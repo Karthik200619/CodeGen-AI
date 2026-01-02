@@ -13,6 +13,9 @@ import json
 import speech_recognition as sr
 from PIL import Image
 import pytesseract
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 # OCR Setup
@@ -576,8 +579,11 @@ if "processing" not in st.session_state:
 if "last_prompt" not in st.session_state:
     st.session_state.last_prompt = ""
 
-GROQ_API_KEY = "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"
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
+if not GROQ_API_KEY:
+    st.error("❌ GROQ_API_KEY not found. Set it in .env file")
+    st.stop()
 
 # ---------- Helper Functions ----------
 def get_active_thread():
@@ -1026,4 +1032,3 @@ if user_input:
     st.session_state.last_prompt = final_prompt
     st.session_state.processing = True
     st.rerun()
-
