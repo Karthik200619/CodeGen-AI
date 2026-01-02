@@ -1,1 +1,7 @@
-# Final_Project_Karthik
+streamlit
+groq
+python-dotenv
+opencv-python
+pytesseract
+numpy
+Pillow
